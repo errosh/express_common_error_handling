@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const { ErrorHandler,handleError,handleSuccess } = require("./helper/error");
 const { statusCode } =  require("./helper/http_statuscode");
+const dbConnection  = require("./helper/dbConnection")
 
 const app = express();
 
@@ -11,13 +12,14 @@ console.log(statusCode.OK);
 
 app.listen(PORT,()=>{
     console.log(`Server is running on port ${PORT}`);
+    dbConnection();
 })
 
 app.use(cors());
-
-
+  
 app.get("/",(req,res,next)=>{
-    throw new ErrorHandler(401,"Not found!")
+    // throw new ErrorHandler(401,"Not found!")
+   
 })
 
 app.get("/demo",(req,res,next)=>{
